@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ pet.name }}</h5>
+        <p class="card-text">{{ pet.description }}</p>
+        {% if user != pet.owner %}
+            <button class="btn btn-success" onclick="revealContact()">Adopt Me</button>
+            <div id="contact" style="display:none;">
+                <p>Contact: {{ pet.owner.email }}, {{ pet.owner.phone }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function revealContact() {
+    document.getElementById('contact').style.display = 'block';
+}
+</script>
+{% endblock %}
