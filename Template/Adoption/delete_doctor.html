@@ -1,0 +1,95 @@
+{% load static %}
+{% include 'Adoption/Navbar.html' %}
+
+<div class="container d-flex justify-content-center">
+    <div class="glass-background text-center" style="max-width: 500px; margin-top: 100px; padding: 2rem;">
+        <h3 class="mb-4">Delete Doctor</h3>
+        <p>Are you sure you want to delete <strong>{{ doctor.name }}</strong>?</p>
+
+        <form method="POST" class="d-flex justify-content-center gap-3 mt-4">
+            {% csrf_token %}
+            <button type="submit" class="glass-btn">
+    Yes, Delete
+</button>
+
+<a href="{% url 'doctor' %}" class="glass-btn">
+    Cancel
+</a>
+        </form>
+    </div>
+</div>
+
+<style>
+body {
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.glass-background {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+@media (max-width: 576px) {
+    .glass-background {
+        padding: 1rem;
+        margin-top: 50px;
+    }
+    .btn {
+        width: 100%;
+    }
+    form.d-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+    .glass-btn {
+    padding: 10px 18px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.glass-btn:active {
+    transform: scale(0.96);
+}
+</style>

@@ -1,0 +1,117 @@
+{% load static %}
+{% include 'Adoption/Navbar.html' %}
+
+<div class="container d-flex justify-content-center">
+    <div class="glass-background w-100" style="max-width: 600px; margin-top: 50px; padding: 2rem;">
+        <h3 class="text-center mb-4">
+            {% if form.instance.pk %}
+                Update Doctor
+            {% else %}
+                Add Doctor
+            {% endif %}
+        </h3>
+
+        <!-- Messages -->
+        {% if messages %}
+            <div class="mb-3">
+                {% for message in messages %}
+                    <div class="alert alert-info text-center">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="glass-btn">
+    {% if form.instance.pk %}
+        Update Doctor
+    {% else %}
+        Add Doctor
+    {% endif %}
+</button>
+        </form>
+<a href="{% url 'doctor' %}" class="glass-btn">
+    Back to Doctors
+</a>
+            </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .glass-background {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    form input, form select, form textarea {
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.15);
+        color: #000;
+    }
+
+    form input:focus, form select:focus, form textarea:focus {
+        outline: none;
+        border-color: #74ebd5;
+        box-shadow: 0 0 8px rgba(116, 235, 213, 0.5);
+    }
+
+    .btn-success, .btn-secondary {
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    @media (max-width: 576px) {
+        .glass-background {
+            padding: 1rem;
+        }
+    }
+    .glass-btn {
+    width: 100%;
+    padding: 10px 18px;
+    margin-top: 10px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    text-align: center;
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.glass-btn:active {
+    transform: scale(0.96);
+}
+</style>

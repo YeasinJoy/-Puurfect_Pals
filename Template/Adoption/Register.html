@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+       body {
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .glass-background {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            z-index: 1;
+        }
+
+        .glass-input {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        .glass-input:focus {
+            outline: none;
+            border: 1px solid #fff;
+        }
+
+        .form-label {
+            color: white;
+        }
+
+        .btn-success {
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+
+        .btn-success:hover {
+            background-color: #388E3C;
+        }
+
+        .full-page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .text-center a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .text-center {
+            color: white;
+        }
+
+        header {
+    width: 100%;
+    position: relative;
+}
+
+header nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 20px;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo-mark {
+    width: 40px;
+    height: 40px;
+    background: #111111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.logo-name {
+    color: #111111;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* NAV LINKS */
+.nav-links a {
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 8px 16px;
+    border-radius: 12px;
+
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    background: rgba(0,0,0,0.10);
+    transform: translateY(-2px);
+}
+
+/* ACTIVE */
+.nav-links a.active {
+    background: rgba(0,0,0,0.15);
+}
+
+/* LINE UNDER NAVBAR */
+header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.2);
+}
+
+
+    </style>
+</head>
+<body>
+{% load static %}
+{% block content %}
+  <header>
+  <nav>
+
+    <!-- LOGO -->
+    <a href="{% url 'home' %}" class="logo">
+        <span class="logo-mark">PP</span>
+        <span class="logo-name">Puurfect Pals</span>
+    </a>
+
+    <!-- MENU -->
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about_page' %}">About Us</a>
+        <a href="{% url 'services_page' %}">Service</a>
+        <a href="{% url 'contact_page' %}">Contact Us</a>
+
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}" class="active">Sign Up</a>
+    </div>
+
+  </nav>
+</header>
+
+    <div class="full-page-container">
+        <div class="glass-background">
+            <h3 class="text-center text-white mb-4">Create an Account</h3>
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" name="first_name" id="first_name" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" name="last_name" id="last_name" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" name="phone" id="phone" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" name="address" id="address" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" name="password1" id="password1" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" class="glass-input" required>
+                </div>
+                <div class="mb-3">
+                    <label for="profile_picture" class="form-label">Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="glass-input">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+            </form>
+
+          <p class="mt-3 text-center">
+    Already have an account?
+    <a href="{% url 'login' %}" style="color:white; font-weight:bold; text-decoration:none;">
+        Login
+    </a>
+</p>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,293 @@
+{% extends "Adoption/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ================= MAIN CONTAINER ================= -->
+<section class="main-container">
+  <div class="content-wrapper">
+
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <h1>Contact Us</h1>
+      <p>Get in touch with us for any questions, support, or adoption inquiries. We're here to help you connect with pets safely and efficiently.</p>
+    </section>
+
+    <!-- ================= CONTACT BOXES ================= -->
+    <section class="contact-section">
+      <div class="contact-container">
+
+        <!-- Head Office -->
+        <div class="contact-box">
+          <h3>Head Office</h3>
+          <p>Green Smart City, Dhaka</p>
+          <p>TEL: +88 02 8315380</p>
+          <p>Fax: +88 02 8350003</p>
+          <p>Email: tahsinzaman20@gmail.com</p>
+        </div>
+
+        <!-- Call Center -->
+        <div class="contact-box">
+          <h3>Call Center</h3>
+          <p>MOB: 01570226015</p>
+          <p>TEL: +88 02 8331302, +88 02 8331303, +88 02 8331304</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-box contact-form-box">
+          <h3>Send a Message</h3>
+          <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+            <button type="submit" class="btn primary">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+      <div class="footer-box">
+        <div class="footer-cols-wrapper">
+          <!-- About Puurfect Pals -->
+          <div class="footer-col">
+            <h3>About Puurfect Pals</h3>
+            <p>
+              Puurfect Pals connects loving pets with loving homes. View detailed pet profiles, submit adoption requests,
+              and track your future furry friend in a safe and transparent way.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="{% url 'home' %}" class="home-link">Home</a></li>
+              <li><a href="{% url 'about_page' %}">About Us</a></li>
+              <li><a href="{% url 'services_page' %}">Our Services</a></li>
+              <li><a href="{% url 'contact_page' %}">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="footer-col">
+            <h3>Address</h3>
+            <p>
+              Green Pet Shelter <br>
+              Dhaka, Bangladesh <br>
+              📞 +8801746689122 <br>
+              Email: info@puurfectpals.com
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">© 2026 Puurfect Pals</div>
+      </div>
+    </footer>
+
+  </div> <!-- content-wrapper end -->
+</section> <!-- main-container end -->
+
+<!-- ================= CONTACT PAGE CSS ================= -->
+<style>
+  .main-container {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+    box-sizing: border-box;
+  }
+
+ .content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 50px rgba(0,0,0,0.25);
+
+  padding: 40px;
+}
+
+  /* HERO */
+  .page-hero h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+  }
+
+  .page-hero p {
+    font-size: 1.25rem;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 50px;
+    color: #000;
+  }
+
+  /* CONTACT SECTION */
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  .contact-box {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: #000;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .contact-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .contact-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* Contact Form */
+  .contact-form-box input,
+  .contact-form-box textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .contact-form-box button {
+    background: #0f4c4c;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+
+  .contact-form-box button:hover {
+    background: #083333;
+  }
+
+  .contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  /* ================= FOOTER CSS ================= */
+  .main-footer {
+    background: #0f4c4c;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+  }
+
+  .footer-box {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .footer-cols-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .footer-col h3 {
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  .footer-col p,
+  .footer-col ul li a {
+    color: #ffffff;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul li a:hover {
+    color: #74ebd5;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    color: #b0f2b6;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-hero h1 {
+      font-size: 2.2rem;
+    }
+    .page-hero p {
+      font-size: 1rem;
+    }
+    .contact-box h3 {
+      font-size: 1.3rem;
+    }
+    .contact-box p,
+    .contact-form-box input,
+    .contact-form-box textarea,
+    .contact-form-box button {
+      font-size: 1rem;
+    }
+    .contact-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .footer-cols-wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-navbar .nav-link,
+        .glass-navbar .navbar-brand {
+            color: #FFF8DC !important;
+        }
+
+        .glass-navbar .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            color: white;
+
+  padding-left: 8px;   /* <-- এই লাইনটা add করলেই লেখা বামে আসবে */
+    padding-right: 10px; /* optional: একটু right space দিতে */
+        }
+
+        .search-input::placeholder {
+            color: #f1f1f1;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: none;
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .admin-badge-nav{
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #FFF8DC;
+            padding: 6px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            white-space: nowrap;
+
+        }
+        .navbar-collapse {
+    position: relative; /* 🔥 important for absolute center */
+}
+
+/* 👑 CENTER ADMIN BADGE */
+.admin-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    pointer-events: none;   /* 🔥 FIX: click block বন্ধ */
+    z-index: 1;
+}
+.premium-logo {
+    cursor: default;
+}
+
+.premium-logo:active {
+    pointer-events: none;
+}
+.navbar-brand {
+    pointer-events: auto !important;
+}
+        /* PREMIUM LOGO */
+.premium-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
+}
+
+/* Logo Box */
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: white;
+
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.4),
+        inset 0 0 8px rgba(255,255,255,0.05);
+
+    transition: 0.3s;
+}
+
+/* Brand Name */
+.logo-name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: #FFF8DC;
+    position: relative;
+}
+
+/* Gradient underline animation */
+.logo-name::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+
+    width: 0%;
+    height: 2px;
+
+    background: linear-gradient(90deg, #74ebd5, #ACB6E5);
+    transition: 0.4s;
+}
+
+/* Hover effects */
+.premium-logo:hover .logo-name::after {
+    width: 100%;
+}
+
+.premium-logo:hover .logo-mark {
+    transform: scale(1.05);
+    box-shadow:
+        0 6px 20px rgba(0,0,0,0.5),
+        0 0 10px rgba(116,235,213,0.4);
+}
+
+/* ================= NAV LINKS (BLACK PREMIUM) ================= */
+.navbar-nav .nav-link,
+.navbar-brand,
+.admin-badge-nav,
+.btn-outline-light {
+    color: #111111 !important;   /* deep black */
+    font-weight: 600;
+}
+
+/* hover */
+.navbar-nav .nav-link:hover {
+    color: #000000 !important;
+    background: rgba(0,0,0,0.06);
+    border-radius: 10px;
+}
+
+/* active */
+.navbar-nav .nav-link.active {
+    color: #000000 !important;
+    font-weight: 700;
+}
+
+/* ================= SEARCH INPUT ================= */
+.search-input {
+    color: #111111 !important;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.15);
+}
+
+.search-input::placeholder {
+    color: rgba(0,0,0,0.5);
+}
+
+/* ================= SEARCH BUTTON ================= */
+.btn-outline-light {
+    background: rgba(0,0,0,0.06);
+    color: #111111 !important;
+    border: none !important;
+}
+
+.btn-outline-light:hover {
+    background: rgba(0,0,0,0.12);
+    color: #000000 !important;
+}
+
+/* ================= LOGO TEXT ================= */
+.logo-name {
+    color: #111111 !important;
+}
+
+/* ================= ADMIN BADGE ================= */
+.admin-badge-nav {
+    color: #111111 !important;
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.10);
+}
+
+
+    </style>
+</head>
+
+<body>
+{% load static %}
+
+<nav class="navbar navbar-expand-lg glass-navbar">
+  <div class="container-fluid">
+
+      <div class="navbar-brand premium-logo">
+    <span class="logo-mark">PP</span>
+    <span class="logo-name">Puurfect Pals</span>
+</div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- LEFT LINKS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'pet' %}active{% endif %}"
+             href="{% url 'pet' %}">
+              <i class="bi bi-paw-fill me-1"></i>Pet
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'doctor' %}active{% endif %}"
+             href="{% url 'doctor' %}">
+              <i class="bi bi-heart-pulse-fill me-1"></i>Doctor
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">
+              <i class="bi bi-person-circle me-1"></i>Profile
+          </a>
+        </li>
+      </ul>
+    <!-- 👑 ADMIN BADGE CENTER -->
+      {% if request.user.is_authenticated and request.user.is_superuser %}
+        <div class="admin-center">
+            <div class="admin-badge-nav">
+                👑 Logged in as Admin
+            </div>
+        </div>
+      {% endif %}
+
+{% if request.resolver_match.url_name != 'upload_pet' and request.resolver_match.url_name != 'upload_doctor' %}
+
+<!-- 🔍 SMART SEARCH -->
+<form method="GET" id="globalSearchForm" class="d-flex me-3">
+
+    {% if request.resolver_match.url_name == 'profile' %}
+        <select id="searchType" class="form-select me-2">
+            <option value="{% url 'search_pet' %}">Pet</option>
+            <option value="{% url 'search_doctor' %}">Doctor</option>
+        </select>
+
+    {% elif request.resolver_match.url_name == 'pet' %}
+        <input type="hidden" id="searchType" value="{% url 'search_pet' %}" name="type">
+
+    {% elif request.resolver_match.url_name == 'doctor' %}
+        <input type="hidden" id="searchType" value="{% url 'search_doctor' %}" name="type">
+    {% endif %}
+
+    <input type="text"
+           name="q"
+           class="form-control search-input me-2"
+           placeholder="Search..."
+           required>
+
+    <button class="btn btn-outline-light" type="submit">
+        <i class="bi bi-search"></i>
+    </button>
+
+</form>
+
+{% endif %}
+
+      <!-- RIGHT AUTH LINKS -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">
+                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">
+                <i class="bi bi-pencil-square me-1"></i>Register
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<script>
+document.getElementById("globalSearchForm").addEventListener("submit", function(){
+    let searchElement = document.getElementById("searchType");
+    if(searchElement.tagName === "SELECT"){
+        // dropdown -> dynamic action
+        this.action = searchElement.value;
+        let hiddenInput = this.querySelector('input[name="type"]');
+        if(!hiddenInput){
+            hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'type';
+            this.appendChild(hiddenInput);
+        }
+        hiddenInput.value = searchElement.options[searchElement.selectedIndex].text.toLowerCase();
+    } else {
+        // hidden input already has action value
+        this.action = searchElement.value;
+    }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

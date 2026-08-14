@@ -1,0 +1,286 @@
+/* =========================== ROOT COLORS =========================== */
+:root {
+  --primary-1: #74ebd5;
+  --primary-2: #ACB6E5;
+  --primary-dark: #0f766e;
+  --card-bg: #ffffffdd;
+  --text-dark: #1e293b;
+  --glass-bg: rgba(255,255,255,0.1);
+  --glass-border: rgba(255,255,255,0.3);
+  --border-radius: 16px;
+}
+
+/* =========================== GLOBAL RESET =========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+ body {
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+
+/* =========================== HEADER =========================== */
+header nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+header nav a:hover { color: #000; }
+
+/* =========================== MAIN / GLASS =========================== */
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.glass-background {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  color: #fff;
+}
+
+/* =========================== SLIDER =========================== */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: clamp(250px, 40vh, 400px);
+  object-fit: cover;
+
+  /* 🔥 center focus */
+  object-position: center;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* =========================== HERO =========================== */
+.hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+    color: #000;
+}
+
+.hero-text h1 { margin-bottom: 20px; color: #000;(--primary-dark); }
+.hero-text p { margin-bottom: 20px; color: #000; line-height: 1.7; }
+.hero-buttons .btn { margin: 0 5px; }
+
+.btn { padding: 12px 22px; border-radius: 6px; font-weight: bold; text-decoration: none; }
+.primary { background: var(--primary-dark); color: white; }
+.secondary { background: #6366f1; color: white; }
+
+/* =========================== INFO CARDS =========================== */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* min-width barailam 220px theke 280px */
+  gap: 30px; /* gap boro kora */
+  width: 95%; /* width slightly boro kora */
+  margin: 50px auto; /* top-bottom margin boro */
+}
+
+.info-cards .card {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  color: white;
+  padding: 40px; /* padding boro kora */
+  border-radius: 16px; /* slightly rounded */
+  text-align: center;
+  font-size: 1.1rem; /* text boro */
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 220px; /* minimum height fix kora */
+}
+
+.info-cards .card:hover {
+  transform: translateY(-8px); /* hover effect aro noticeable */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.info-cards .card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.info-cards .card p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.info-cards .card a.btn {
+  padding: 12px 25px;
+  font-size: 1rem;
+}
+
+/* ===== FOOTER ===== */
+.main-footer {
+  padding: 0;
+  background: #0f4c4c; /* background for whole footer */
+}
+
+.footer-box {
+  background: #0f4c4c; /* single colored box */
+  color: white;
+  padding: 40px 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  border-radius: 10px;
+}
+
+.footer-cols-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.footer-col {
+  flex: 1 1 30%; /* 3 columns parallel */
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-col p {
+  line-height: 1.6;
+  color: white;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin: 5px 0;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #6366f1;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  color: white;
+  font-size: 14px;
+  border-top: 1px solid #1a6d6d; /* subtle teal/greenish color */
+}
+/* =========================== RESPONSIVE =========================== */
+@media(max-width:768px){
+  .slide img { height: 30vh; }
+  .hero-text p { font-size: 0.95rem; }
+}
+
+@media(max-width:480px){
+  .slide img { height: 25vh; }
+  .hero-text p { font-size: 0.9rem; }
+}
+.full-page-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.full-card {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 50px rgba(0,0,0,0.25);
+    padding: 30px;
+    color: #fff;
+}
+
+/* adjust padding for sections inside full-card */
+.full-card .slider-wrapper,
+.full-card .hero-section,
+.full-card .info-cards,
+.full-card footer {
+    margin-bottom: 40px;
+}
+
+.full-card footer {
+    background: transparent;
+    border: none;
+    padding: 0;
+}

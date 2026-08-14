@@ -1,0 +1,35 @@
+{% extends "Adoption/pet.html" %}
+{% block content %}
+
+<style>
+    .success-box {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        color: #000;
+        margin-top: 100px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .success-box h2 {
+        font-weight: bold;
+        color: #155724;
+    }
+
+    .success-box p {
+        font-size: 18px;
+    }
+</style>
+
+<div class="container">
+    <div class="success-box">
+        <h2>🎉 Congratulations!</h2>
+        <p>You have adopted <strong>{{ pet.name }}</strong>.</p>
+        <p>Please visit our office to complete the adoption process.</p>
+        <a href="{% url 'pet' %}" class="btn btn-dark mt-3">Back</a>
+    </div>
+</div>
+
+{% endblock %}

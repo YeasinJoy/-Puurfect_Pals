@@ -1,0 +1,109 @@
+{% extends "Adoption/pet.html" %}
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    min-height: 100vh;
+}
+
+/* ================= GLASS CARD ================= */
+.glass-card {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+
+    text-align: center;
+}
+
+/* title */
+.glass-card h4 {
+    color: #111;
+    font-weight: 700;
+}
+
+/* text */
+.glass-card p {
+    color: #222;
+    font-size: 16px;
+}
+
+/* ================= GLASS BUTTON ================= */
+.glass-btn {
+    padding: 10px 18px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    min-width: 120px;
+}
+
+/* hover */
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+/* click */
+.glass-btn:active {
+    transform: scale(0.96);
+}
+
+/* danger button */
+.glass-danger {
+    border: 1px solid rgba(255, 80, 80, 0.35);
+    color: #b30000;
+}
+</style>
+
+<div class="glass-card">
+
+    <h4>⚠ Confirm Delete</h4>
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ pet.name }}</strong>?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div style="display:flex; justify-content:center; gap:15px; margin-top:20px; flex-wrap:wrap;">
+
+            <button type="submit" class="glass-btn ">
+                Yes, Delete
+            </button>
+
+            <a href="{% url 'pet_details' pet.id %}" class="glass-btn">
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

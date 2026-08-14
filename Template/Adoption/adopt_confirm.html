@@ -1,0 +1,23 @@
+{% extends "Adoption/pet.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card p-4 text-center" style="max-width: 500px;">
+        <h4>Are you sure you want to adopt?</h4>
+
+        <p class="mt-3">
+            <strong>{{ pet.name }}</strong> ({{ pet.breed }})
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success me-2">
+                Yes, Adopt
+            </button>
+            <a href="{% url 'pet_details' pet.id %}" class="btn btn-danger">
+                No, Go Back
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

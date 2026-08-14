@@ -1,0 +1,285 @@
+{% extends "Adoption/pet.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Main Glass Container */
+    .glass-background {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 50px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Modern Card */
+    .card {
+        background: transparent;
+        border: none;
+    }
+
+    /* 🔥 FIXED MODERN IMAGE */
+    .pet-image-wrapper {
+        width: 100%;
+        max-width: 320px;
+        height: 320px;
+        margin: 0 auto 20px;
+
+        border-radius: 20px;
+        padding: 6px;
+        background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .pet-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        border: 3px solid white;
+    }
+
+    /* Text */
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    /* Buttons */
+    .btn-modern {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        min-width: 130px;
+        transition: 0.3s;
+    }
+
+    .btn-modern:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-adopt {
+        background: #16a34a;
+        color: white;
+        border: none;
+    }
+
+    .btn-back {
+        background: #475569;
+        color: white;
+        border: none;
+    }
+
+    .btn-edit {
+        background: #f59e0b;
+        color: white;
+        border: none;
+    }
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+        border: none;
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+
+    .btn-admin-big {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    min-width: 140px;
+    transition: 0.3s;
+}
+
+.btn-admin-big:hover {
+    transform: scale(1.05);
+}
+    .btn-modern {
+    padding: 10px 18px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-modern:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-modern:active {
+    transform: scale(0.96);
+}
+
+/* optional subtle differentiation */
+.btn-edit {
+    border: 1px solid rgba(0, 150, 255, 0.3);
+}
+
+.btn-delete {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-back {
+    padding: 10px 18px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+    transition: all 0.3s ease;
+
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-back:active {
+    transform: scale(0.96);
+}
+.btn-admin-big {
+    min-width: 120px;
+}
+
+
+
+</style>
+
+<div class="container d-flex justify-content-center">
+    <div class="glass-background w-100" style="max-width: 600px;">
+        <div class="card text-center">
+
+            <!-- Image -->
+            {% if pet.image %}
+                <div class="pet-image-wrapper">
+                    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image">
+                </div>
+            {% endif %}
+
+            <!-- Content -->
+            <div class="card-body">
+
+                <h4 class="card-title">{{ pet.name }}</h4>
+
+                <p class="card-text"><strong>Breed:</strong> {{ pet.breed }}</p>
+                <p class="card-text"><strong>Age:</strong> {{ pet.age }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ pet.description }}</p>
+
+                <!-- STATUS -->
+                <p class="card-text">
+                    <strong>Status:</strong>
+                    {% if pet.status == 'available' %}
+                        <span class="badge bg-success">Available</span>
+                    {% elif pet.status == 'pending' %}
+                        <span class="badge bg-warning text-dark">Pending Approval</span>
+                    {% else %}
+                        <span class="badge bg-danger">Not Available</span>
+                    {% endif %}
+                </p>
+
+                <!-- USER BUTTONS -->
+                {% if not is_admin %}
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    {% if pet.status == 'available' %}
+                        <a href="{% url 'adopt_confirm' pet.id %}" class="btn btn-modern btn-adopt">
+                            Adopt Pet
+                        </a>
+                    {% else %}
+                        <button class="btn btn-modern btn-adopt" disabled>
+                            Not Available
+                        </button>
+                    {% endif %}
+
+                    <a href="{% url 'pet' %}" class="btn btn-modern btn-back">
+                        ← Back
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- ADMIN BUTTONS -->
+            {% if is_admin %}
+            <div class="mt-3 text-center">
+
+                <div class="d-flex justify-content-center gap-3">
+
+    <!-- Edit only if available -->
+{% if pet.status == 'available' %}
+    <a href="{% url 'update_pet' pet.id %}" class="btn-modern btn-edit btn-admin-big">
+        Edit
+    </a>
+{% endif %}
+
+<a href="{% url 'delete_pet' pet.id %}" class="btn-modern btn-delete btn-admin-big">
+    Delete
+</a>
+
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'pet' %}" class="btn-modern btn-back btn-admin-big">
+        ← Back
+    </a>
+</div>
+
+
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

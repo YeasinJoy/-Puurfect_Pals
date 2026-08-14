@@ -1,0 +1,245 @@
+{% extends "Adoption/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ================= MAIN CONTAINER ================= -->
+<section class="main-container">
+  <div class="content-wrapper">
+
+    <!-- ================= PAGE HERO ================= -->
+    <section class="page-hero">
+      <h1>Our Services</h1>
+
+    </section>
+
+    <!-- ================= SERVICES LIST ================= -->
+    <section class="services-list">
+      <div class="service-card">
+        <h3>Pet Adoption</h3>
+        <p>Adopt pets easily through our user-friendly platform. Find your perfect furry companion and give them a loving forever home.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Fostering</h3>
+        <p>Provide temporary homes for pets while they wait for adoption. Support animal welfare and help pets transition smoothly.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Volunteer Programs</h3>
+        <p>Join our volunteer programs to care for pets, organize events, and raise awareness in the community about responsible pet ownership.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Veterinary Facilities</h3>
+        <p>We provide medical care and check-ups for pets in our shelter to ensure they are healthy and ready for adoption.</p>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+      <div class="footer-box">
+        <div class="footer-cols-wrapper">
+          <!-- About Puurfect Pals -->
+          <div class="footer-col">
+            <h3>About Puurfect Pals</h3>
+            <p>
+              Puurfect Pals connects loving pets with loving homes. View detailed pet profiles, submit adoption requests,
+              and track your future furry friend in a safe and transparent way.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="{% url 'home' %}" class="home-link">Home</a></li>
+              <li><a href="{% url 'about_page' %}">About Us</a></li>
+              <li><a href="{% url 'services_page' %}">Our Services</a></li>
+              <li><a href="{% url 'contact_page' %}">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="footer-col">
+            <h3>Address</h3>
+            <p>
+              Green Pet Shelter <br>
+              Dhaka, Bangladesh <br>
+              📞 +8801746689122 <br>
+              Email: info@puurfectpals.com
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">© 2026 Puurfect Pals</div>
+      </div>
+    </footer>
+
+  </div> <!-- content-wrapper end -->
+</section> <!-- main-container end -->
+
+<!-- ================= SERVICES PAGE CSS ================= -->
+<style>
+  .main-container {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+    box-sizing: border-box;
+  }
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 50px rgba(0,0,0,0.25);
+
+  padding: 40px;
+}
+
+  /* HERO */
+  .page-hero h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+  }
+
+  .page-hero p {
+    font-size: 1.25rem;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: auto;
+    color: #000;
+    margin-bottom: 50px;
+  }
+
+  /* SERVICE CARDS */
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .service-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px 20px;
+    border-radius: 12px;
+    color: #000;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000;
+  }
+
+  .service-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  /* ================= FOOTER CSS ================= */
+  .main-footer {
+    background: #0f4c4c;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+  }
+
+  .footer-box {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .footer-cols-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .footer-col h3 {
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  .footer-col p,
+  .footer-col ul li a {
+    color: #ffffff;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul li a:hover {
+    color: #74ebd5;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    color: #b0f2b6; /* light green */
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .page-hero h1 {
+      font-size: 2.2rem;
+    }
+    .page-hero p {
+      font-size: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.3rem;
+    }
+    .service-card p {
+      font-size: 1rem;
+    }
+    .footer-cols-wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "Adoption/doctor.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="glass-background text-center p-4">
+        {% if already_booked %}
+            <h3>Appointment Confirmed ✅</h3>
+            <p>Doctor: {{ doctor.name }}</p>
+            <p>Date: {{ date }}</p>
+            <p>Your Serial Number: <strong>{{ serial }}</strong></p>
+            <a href="{% url 'doctor' %}" class="btn btn-secondary mt-3">&larr; Back to Doctors</a>
+        {% else %}
+            <h3>Are you sure you want to make an appointment with {{ doctor.name }}?</h3>
+            <p>Date: {{ date }}</p>
+            <p>Serial Number if confirmed: <strong>{{ serial }}</strong></p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary mt-3">Yes, Confirm Appointment</button>
+                <a href="{% url 'doctor_details' doctor.id %}" class="btn btn-secondary mt-3">&larr; Cancel</a>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

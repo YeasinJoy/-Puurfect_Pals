@@ -1,0 +1,218 @@
+{% extends "Adoption/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ================= MAIN CONTAINER ================= -->
+<section class="main-container">
+  <div class="content-wrapper">
+
+
+    <!-- ================= ABOUT DETAILS ================= -->
+    <section class="about-details">
+      <h2>Puurfect Pals</h2>
+      <p class="story-text">
+        Puurfect Pals started with a vision to reduce stray animals and help them get loving homes.
+        We rescue, foster, and adopt pets, making the adoption process smooth, safe, and transparent.
+        Our programs include community outreach, veterinary support, and volunteer initiatives
+        that ensure every animal is cared for until they find their forever family.
+        Over the years, we have successfully matched hundreds of pets with caring owners,
+        and our mission continues to grow stronger every day.
+      </p>
+
+      <h2>Our Mission</h2>
+      <ul>
+        <li>Provide a safe and loving environment for rescued animals.</li>
+        <li>Educate communities about responsible pet ownership.</li>
+        <li>Ensure every pet finds a permanent home.</li>
+      </ul>
+
+      <h2>Our Team</h2>
+      <p class="team-text">
+        Our dedicated team works tirelessly to care for animals, manage adoptions, and raise awareness about animal welfare.
+        Each member brings a unique set of skills from experienced veterinarians and trained foster coordinators to compassionate volunteers,
+        all united by a shared passion for animal welfare.
+        We ensure that every pet in our care receives medical attention, emotional support, and a safe environment until they find their forever home.
+        Beyond day-to-day care, our team organizes community events, educational programs, and adoption drives to create a loving and informed network of pet owners.
+      </p>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="main-footer">
+      <div class="footer-box">
+        <div class="footer-cols-wrapper">
+          <!-- About Puurfect Pals -->
+          <div class="footer-col">
+            <h3>About Puurfect Pals</h3>
+            <p>
+              Puurfect Pals connects loving pets with loving homes. View detailed pet profiles, submit adoption requests,
+              and track your future furry friend in a safe and transparent way.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="{% url 'home' %}" class="home-link">Home</a></li>
+              <li><a href="{% url 'about_page' %}">About Us</a></li>
+              <li><a href="{% url 'services_page' %}">Our Services</a></li>
+              <li><a href="{% url 'contact_page' %}">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="footer-col">
+            <h3>Address</h3>
+            <p>
+              Green Pet Shelter <br>
+              Dhaka, Bangladesh <br>
+              📞 +8801746689122 <br>
+              Email: info@puurfectpals.com
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">© 2026 Puurfect Pals</div>
+      </div>
+    </footer>
+
+  </div> <!-- content-wrapper end -->
+</section> <!-- main-container end -->
+
+<!-- ================= ABOUT PAGE CSS ================= -->
+<style>
+  .main-container {
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+    box-sizing: border-box;
+  }
+
+  .content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 50px rgba(0,0,0,0.25);
+
+  padding: 40px;
+}
+  .about-details h2 {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    text-align: left;
+    color: #000; /* black headings */
+  }
+
+  .about-details p,
+  .about-details .story-text,
+  .about-details .team-text,
+  .about-details ul li {
+    font-size: 1.2rem; /* same size for all paragraphs & list items */
+    line-height: 1.8;
+    color: #000; /* black text */
+    margin-bottom: 20px;
+  }
+
+  .about-details ul {
+    margin-left: 20px;
+    list-style-type: disc;
+  }
+
+  .about-details ul li {
+    margin-bottom: 10px;
+  }
+
+  /* ================= FOOTER CSS ================= */
+  .main-footer {
+    background: #0f4c4c;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+  }
+
+  .footer-box {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .footer-cols-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .footer-col h3 {
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  .footer-col p,
+  .footer-col ul li a {
+    color: #ffffff;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col ul li a:hover {
+    color: #74ebd5;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+    color: #b0f2b6; /* light green */
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-details h2 {
+      font-size: 1.8rem;
+    }
+    .about-details p,
+    .about-details .story-text,
+    .about-details .team-text,
+    .about-details ul li {
+      font-size: 1rem;
+    }
+
+    .footer-cols-wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
+
+{% endblock %}

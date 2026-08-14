@@ -1,0 +1,272 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Puurfect Pals{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <style>
+    /* ================= NAVBAR FIX (GREEN LINE STYLE) ================= */
+
+
+
+
+  header {
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  header nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+
+    /* ❌ removed glass box effect */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    /* ❌ ensure no border/outline feel */
+    border: none;
+    box-shadow: none;
+  }
+
+  /* ===== LOGO ===== */
+  header nav .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* ===== NAV LINKS ===== */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  header nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
+
+    /* ❌ ensure no background shape */
+    background: transparent;
+  }
+
+  /* Hover */
+  header nav a:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 0.2); /* subtle only */
+  }
+
+  /* Active */
+  .nav-links a.active {
+    background: transparent;
+    color: #fff;
+  }
+
+header {
+  width: 100%;
+  position: relative;
+}
+
+/* 🔥 FULL WIDTH BOTTOM LINE */
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;   /* line thickness */
+border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+/* Logo Badge (Luxury feel) */
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: white;
+
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.4),
+        inset 0 0 10px rgba(255,255,255,0.05);
+}
+
+/* Brand Name */
+.logo-name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+
+
+    color: #000000;
+
+
+    transition: 0.3s;
+}
+
+/* Premium Gradient Accent */
+.logo-name::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, #74ebd5, #ACB6E5);
+    transition: 0.4s;
+    margin-top: 3px;
+}
+
+/* Hover Effect */
+.logo:hover .logo-name::after {
+    width: 100%;
+}
+
+.logo:hover .logo-mark {
+    transform: scale(1.05);
+    box-shadow:
+        0 6px 25px rgba(0,0,0,0.5),
+        0 0 10px rgba(116,235,213,0.4);
+}
+
+/* ================= NAV LINKS (ALL SAME BLACK) ================= */
+.nav-links a {
+    text-decoration: none !important;
+
+    color: #111111;   /* ALL SAME BLACK */
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 8px 16px;
+    border-radius: 12px;
+
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+
+    transition: all 0.25s ease;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* hover */
+.nav-links a:hover {
+    background: rgba(0,0,0,0.10);
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+/* active (NO COLOR CHANGE, ONLY SLIGHT EMPHASIS) */
+.nav-links a.active {
+    color: #111111;   /* SAME AS OTHERS */
+    background: rgba(0,0,0,0.08);
+    font-weight: 600;
+}
+
+/* icons */
+.nav-links a i {
+    color: #111111;
+}
+
+/* click effect */
+.nav-links a:active {
+    transform: scale(0.96);
+}
+</style>
+
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <nav>
+<a href="{% url 'home' %}" class="logo">
+    <span class="logo-mark">PP</span>
+    <span class="logo-name">Puurfect Pals</span>
+</a>
+
+      <!-- RIGHT MENU -->
+      <div class="nav-links">
+        <a href="{% url 'home' %}" >Home</a>
+        <a href="{% url 'about_page' %}">About us</a>
+        <a href="{% url 'services_page' %}">Service</a>
+        <a href="{% url 'contact_page' %}">Contact Us</a>
+
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'register' %}">Sign up</a>
+        {% endif %}
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+
+  <!-- ================= SLIDER JS (UNCHANGED) ================= -->
+  <script>
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    if(slider) {
+      let currentIndex = 0;
+
+      function updateSlider() {
+        const slideWidth = slides[0].offsetWidth;
+        slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+      });
+
+      window.addEventListener('resize', updateSlider);
+      updateSlider();
+    }
+  </script>
+
+</body>
+</html>

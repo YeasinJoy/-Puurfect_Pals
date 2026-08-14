@@ -1,0 +1,130 @@
+{% extends "Adoption/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ================= FULL PAGE MAIN CONTAINER ================= -->
+<section class="full-page-container">
+  <div class="full-card">
+
+    <!-- ================= SLIDER ================= -->
+    <div class="slider-wrapper">
+      <div class="slider">
+        <div class="slide"><img src="{% static 'images/istock-1322461027-2000x1334.1000x0-is.jpg' %}" alt="Dog 1"></div>
+        <div class="slide"><img src="{% static 'images/hero-main.jpg' %}" alt="Dog 1"></div>
+        <div class="slide"><img src="{% static 'images/istock-1322461027-2000x1334.1000x0-is.jpg' %}" alt="Dog 1"></div>
+       </div>
+
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-text">
+          <h1>Welcome To Puurfect Pals</h1>
+        <p>
+        On <strong>Puurfect Pals</strong>, we connect loving pets with caring individuals and families. If you have a pet in need of a home, you can easily list them on our platform and ensure they find a safe, happy environment. Each pet profile includes detailed information to help potential adopters make informed decisions.
+      </p>
+      <p>
+        Prospective adopters can browse our extensive pet listings, filter by type, age, or personality, and request adoption through a secure and verified process. Our platform prioritizes the safety and well-being of every animal, making sure that each pet is placed in a loving home.
+      </p>
+      <p>
+        In addition, we offer veterinary support and doctor appointments for pet owners. Registered veterinarians can provide consultations, track medical histories, and help ensure pets remain healthy. Whether you are adopting, listing a pet, or seeking professional care, Puurfect Pals makes the process simple, safe, and rewarding.
+      </p>
+          <div class="hero-buttons">
+            <a href="{% url 'login' %}" class="btn primary">Login</a>
+            <a href="{% url 'register' %}" class="btn secondary">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INFO CARDS ================= -->
+    <section class="info-cards">
+      <div class="card">
+        <h3>About Us</h3>
+        <p>Learn about our pet adoption mission and community.</p>
+        <a href="{% url 'about_page' %}" class="btn secondary">Read More</a>
+      </div>
+
+      <div class="card">
+        <h3>Our Services</h3>
+        <p>Explore pet adoption, tracking, and support services.</p>
+        <a href="{% url 'services_page' %}" class="btn secondary">Read More</a>
+      </div>
+    </section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="main-footer">
+  <div class="footer-box">
+    <div class="footer-cols-wrapper">
+      <!-- About Puurfect Pals -->
+      <div class="footer-col">
+        <h3>About Puurfect Pals</h3>
+        <p>
+          Puurfect Pals connects loving pets with loving homes. View detailed pet profiles, submit adoption requests, and track your future furry friend in a safe and transparent way.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{% url 'home' %}" class="home-link">Home</a></li>
+          <li><a href="{% url 'about_page' %}">About Us</a></li>
+          <li><a href="{% url 'services_page' %}">Our Services</a></li>
+          <li><a href="{% url 'contact_page' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Address -->
+      <div class="footer-col">
+        <h3>Address</h3>
+        <p>
+          Green Pet Shelter <br>
+          Dhaka, Bangladesh <br>
+          📞 +8801746689122 <br>
+          Email: info@puurfectpals.com
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom"> Copyright © 2026 Puurfect Pals</div>
+  </div>
+</footer>
+
+
+  </div> <!-- full-card end -->
+</section>
+
+<!-- ================= SLIDER JS ================= -->
+<script>
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let currentIndex = 0;
+
+function updateSlider() {
+  const slideWidth = slides[0].offsetWidth;
+  slider.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlider();
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlider();
+});
+
+window.addEventListener('resize', updateSlider);
+updateSlider();
+</script>
+
+{% endblock %}
